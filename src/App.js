@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { useState } from "react";
+import WeatherCard from "./Components/Weather_Card";
 function App() {
+  const [city, setcity] = useState("");
+  const getcity = (e) => {
+    e.preventDefault();
+    const new_city = e.target.city.value;
+    setcity(new_city);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <p1>Weather.io</p1>
+      <form onSubmit={getcity}>
+        <input type="text" id="city" name="city" />
+        <button type="submit">Get Weather</button>
+      </form>
+      {city && <WeatherCard city={city} />}
     </div>
   );
 }
-
 export default App;
